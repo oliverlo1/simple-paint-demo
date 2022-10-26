@@ -1,0 +1,9 @@
+html {
+    text-align: center;
+    width: 700px;
+    margin: 0 auto;
+  }
+  
+canvas {
+    border: 1px solid grey;
+}
