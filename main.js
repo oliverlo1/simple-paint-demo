@@ -1,12 +1,12 @@
 let cnv = document.getElementById("myCanvas");
 let ctx = cnv.getContext("2d");
-cnv.width = 600;
-cnv.height = 400;
+cnv.width = 800;
+cnv.height = 600;
 
 let mouseIsPressed = false;
 let mouseX, mouseY, pmouseX, pmouseY;
 let size = 5;
-let penColour = "black";
+let penColor = "black";
 
 requestAnimationFrame(loop);
 function loop() {
@@ -18,7 +18,8 @@ function loop() {
 
     // circle if mouseIsPressed
     if (mouseIsPressed) {
-        ctx.strokeStyle = penColour;
+        ctx.strokeStyle = penColor;
+        ctx.lineWidth = size;
         ctx.beginPath();
         ctx.moveTo(pmouseX, pmouseY);
         ctx.lineTo(mouseX, mouseY);
@@ -55,32 +56,37 @@ function keydownHandler(event) {
     if (event.code == "Space") {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, cnv.width, cnv.height);
-        penColour = "black";
+        penColor = "black";
     } else if (event.code == "ArrowUp") {
-        size += 5
+        size += 5;
     } else if (event.code == "ArrowDown") {
-        size -= 5
+        size -= 5;
     } else if (event.code == "Digit1") {
-        penColour = "red";
+        penColor = "red";
     } else if (event.code == "Digit2") {
-        penColour = "green";
+        penColor = "green";
     } else if (event.code == "Digit3") {
-        penColour = "blue";
+        penColor = "blue";
     }
 }
 
-document.getElementById("red").addEventListener("click", setRed)
-document.getElementById("green").addEventListener("click", setGreen)
-document.getElementById("blue").addEventListener("click", setBlue)
+document.getElementById("red").addEventListener("click", setRed);
+document.getElementById("green").addEventListener("click", setGreen);
+document.getElementById("blue").addEventListener("click", setBlue);
+document.getElementById("color-picker").addEventListener("change", changeColor);
 
 function setRed() {
-    penColour = "red";
+    penColor = "red";
 }
 
 function setGreen() {
-    penColour = "green";
+    penColor = "green";
 }
 
 function setBlue() {
-    penColour = "blue";
+    penColor = "blue";
+}
+
+function changeColor() {
+    penColor = document.getElementById("color-picker").value;
 }
